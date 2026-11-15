@@ -1,0 +1,10 @@
+issue,rows_affected,action
+Inconsistent column names,18,Converted to snake_case
+Leading/trailing whitespace in text,0,Applied str.strip()
+Duplicate order lines (identical except row_id),1,Removed row_id(s) [3407]; kept first occurrence
+Dates stored as day/month/year text,9799,Parsed order_date and ship_date with explicit format %d/%m/%Y
+"Missing postal codes (Burlington, Vermont)",11,Imputed ZIP 05401; converted postal_code to 5-character text (keeps leading zeros)
+Product IDs with conflicting names,331,32 IDs standardised to their most frequent name
+Feature engineering,9799,"Added ship_days, order_year, order_quarter, order_month, year_month"
+High-value sales (IQR outliers),1145,Flagged sales > 500.56; NOT removed (valid big-value orders)
+"Repeated (order_id, product_id) lines",14,Kept: separate order lines with different row_id; documented
